@@ -1,16 +1,4 @@
-const http = require('http');
-const app = require('./app');
+const express = require('express');
+const app = express();
 
-const normalizePort = val => {
-    const port = parseInt(val, 10);
-  
-    if (isNaN(port)) {
-      return val;
-    }
-    if (port >= 0) {
-      return port;
-    }
-    return false;
-  };
-  const port = normalizePort(process.env.PORT || '3000');
-  app.set('port', port);
+app.listen(5500, () => console.log('server démarré sur port 5500'));
