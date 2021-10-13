@@ -1,23 +1,27 @@
 const mongoose = require('mongoose');
 
+//informations base de données
+const databaseName = "database";
+const databaseCollection = "connection";
+
 const ConnectModel = mongoose.model(
     // nom de la base de donnees
-    "database",
+    databaseName,
 
     // nom des champs en objet
     {
-        user: {
+        email: {
             type : String,
             required: true
         },
-        pass: {
+        password: {
             type : String,
             required: true
         }
     },
 
     // nom de la collection (table)
-    "connection"
+    databaseCollection
 );
 
 module.exports = { ConnectModel };

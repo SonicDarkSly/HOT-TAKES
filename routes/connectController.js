@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { ConnectModel } = require('../models/connectModel');
 
+
 router.get('/', (req, res) => {
 
     // cherche dans la base de donnees
@@ -15,5 +16,19 @@ router.get('/', (req, res) => {
         else console.log('error to get data : '+ err);
     })
 });
+
+
+router.post('/', (req, res) => {
+    const newRecord = new ConnectModel({
+            email: req.body.email,
+            password: req.body.password
+    });
+    
+    newRecord.save((err, docs) => {
+        if (!err) res.send(docs);
+        else console.log('error creating new data : '+ err);
+    });
+});
+
 
 module.exports = router
