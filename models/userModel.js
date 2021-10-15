@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 //informations base de données
-const databaseName = "database";
-const databaseCollection = "connection";
+const databaseName = process.env.DB_NAME;
+const databaseCollection = process.env.DB_COLLECTION;
 
 const ConnectModel = mongoose.model(
     // nom de la base de donnees
