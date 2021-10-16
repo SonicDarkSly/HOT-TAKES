@@ -3,20 +3,28 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const { ConnectModel } = require('../models/userModel');
+const { userModel } = require('../models/userModel');
 
 router.post('/signup', (req, res) => {
-    bcrypt.hash(req.body.password, 10)
-        .then(hash => {
-            const user = new ConnectModel({
-                email: req.body.email,
-                password: hash
+    
+    userModel.findOne({ email: req.body.email })
+    .then(userControle => {
+        if (!userControle) {
+            bcrypt.hash(req.body.password, 10)
+            .then(hash => {
+                const userRegistred = new userModel({
+                    email: req.body.email,
+                    password: hash
+                })
+                userRegistred.save()
+                    .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+                    .catch(error => res.status(400).json({ error }))
             })
-            user.save()
-                .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                .catch(error => res.status(400).json({ error }))
-        })
-        .catch(error => res.status(500).json({ error }))
+            .catch(error => res.status(500).json({ error }))
+        }else{
+            res.json({ message: 'Utilisateur ['+req.body.email+'] déja enregistré !' })
+        }
+    })
 });
 
 router.post('/login', (req, res) => {

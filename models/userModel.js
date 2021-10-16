@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const databaseName = process.env.DB_NAME;
 const databaseCollection = process.env.DB_COLLECTION;
 
-const ConnectModel = mongoose.model(
+const userModel = mongoose.model(
     // nom de la base de donnees
     databaseName,
 
@@ -24,4 +24,4 @@ const ConnectModel = mongoose.model(
     databaseCollection
 );
 
-module.exports = { ConnectModel };
+module.exports = { userModel };
