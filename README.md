@@ -11,7 +11,7 @@ Pré-requis :
 Le serveur doit fonctionner sur http://localhost:3000/.
 
 Ouvrir le terminal.
-Tapez la commande suivante : [npm start], puis lancez le serveur en tapant la commande : "nodemon".
+Tapez la commande suivante : ![npm start], puis lancez le serveur en tapant la commande : "nodemon".
 
 # FRONTEND #
 
