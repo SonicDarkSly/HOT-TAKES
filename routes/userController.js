@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken')
 const { userModel } = require('../models/userModel');
 
 router.post('/signup', (req, res) => {
-    
     userModel.findOne({ email: req.body.email })
     .then(userControle => {
         if (!userControle) {
@@ -28,7 +27,7 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    ConnectModel.findOne({ email: req.body.email })
+    userModel.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' })
