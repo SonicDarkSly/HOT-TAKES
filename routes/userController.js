@@ -3,15 +3,17 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const { userModel } = require('../models/userModel');
+const User = require('../models/userModel');
+
+// SIGN UP
 
 router.post('/signup', (req, res) => {
-    userModel.findOne({ email: req.body.email })
+    User.findOne({ email: req.body.email })
     .then(userControle => {
         if (!userControle) {
             bcrypt.hash(req.body.password, 10)
             .then(hash => {
-                const userRegistred = new userModel({
+                const userRegistred = new User({
                     email: req.body.email,
                     password: hash
                 })
@@ -21,13 +23,15 @@ router.post('/signup', (req, res) => {
             })
             .catch(error => res.status(500).json({ error }))
         }else{
-            res.json({ message: 'Utilisateur ['+req.body.email+'] déja enregistré !' })
+            res.json({ message: 'Email ['+req.body.email+'] déja enregistré !' })
         }
     })
 });
 
+// LOGIN
+
 router.post('/login', (req, res) => {
-    userModel.findOne({ email: req.body.email })
+    User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' })

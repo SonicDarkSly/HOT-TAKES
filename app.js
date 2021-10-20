@@ -4,10 +4,11 @@ require('dotenv').config({ path: process.cwd() + '/.env' });
 const express = require ('express')
 require('./models/dbConfig');
 const userRoutes = require('./routes/userController')
+const sauceRoutes = require('./routes/sauceController')
 
 const app = express()
 
-// Middleware
+// Headers
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -19,5 +20,6 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.use('/api/auth/', userRoutes)
+//app.use('/api/sauces/', sauceRoutes);
 
 module.exports = app

@@ -1,27 +1,21 @@
 const mongoose = require('mongoose');
 
-//informations base de données
-const databaseName = process.env.DB_NAME;
-const databaseCollection = process.env.DB_COLLECTION;
+// informations base de données
 
-const userModel = mongoose.model(
-    // nom de la base de donnees
-    databaseName,
+const databaseCollection = process.env.DB_COLLECTION_USER;
 
-    // nom des champs en objet
-    {
-        email: {
-            type : String,
-            required: true
-        },
-        password: {
-            type : String,
-            required: true
-        }
+// Schema
+
+const userSchema = mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true
     },
+    password: { 
+        type: String, 
+        required: true
+    }
+});
 
-    // nom de la collection (table)
-    databaseCollection
-);
-
-module.exports = { userModel };
+module.exports = mongoose.model('User', userSchema, databaseCollection)
