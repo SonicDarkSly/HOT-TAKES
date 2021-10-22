@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -7,7 +6,7 @@ const User = require('../models/userModel');
 
 // SIGN UP
 
-router.post('/signup', (req, res) => {
+exports.signup = (req, res, next) => {
     User.findOne({ email: req.body.email })
     .then(userControle => {
         if (!userControle) {
@@ -26,11 +25,11 @@ router.post('/signup', (req, res) => {
             res.json({ message: 'Email ['+req.body.email+'] déja enregistré !' })
         }
     })
-});
+};
 
 // LOGIN
 
-router.post('/login', (req, res) => {
+exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
@@ -53,6 +52,4 @@ router.post('/login', (req, res) => {
                 .catch(error => res.status(500).json({ error }))
         })
         .catch(error => res.status(500).json({ error }))
-});
-
-module.exports = router
+};

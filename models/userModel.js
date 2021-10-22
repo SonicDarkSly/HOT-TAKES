@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 // informations base de données
 
+const databaseName = process.env.DB_NAME;
 const databaseCollection = process.env.DB_COLLECTION_USER;
 
 // Schema
@@ -18,4 +19,10 @@ const userSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', userSchema, databaseCollection)
+const User = mongoose.model(
+    databaseName,
+    userSchema,
+    databaseCollection
+);
+
+module.exports = User;

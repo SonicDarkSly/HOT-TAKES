@@ -54,4 +54,4 @@ const sauceSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Sauce', sauceSchema, databaseCollection)
+module.exports = mongoose.model(databaseCollection, sauceSchema);
