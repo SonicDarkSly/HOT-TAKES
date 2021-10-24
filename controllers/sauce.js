@@ -1,16 +1,14 @@
-/**
- * Importer le package File System pour la modification du système de fichiers (suppression des images)
- */
+// Import
+// Appel de file system pour la gestion de l'image (modification sauce et suppression sauce)
  const fs = require('fs');
 
- /**
-  * Importer le modèle d'une Sauce
-  */
+// Appel du MODEL
  const Sauce = require('../models/sauceModel');
  
- /** 
-  * Créer une Sauce
-  */
+
+// ---------- CREATION SAUCE ----------
+
+// Fonction pour la creation d'un sauce
   exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -28,19 +26,18 @@
         });
 };
  
- /** 
-  * Récupérer toutes les Sauces
-  */
+
+// ---------- VISUALISATION TOUTES LES SAUCES ----------
+
  exports.getAllSauces = (req, res, next) => {
      Sauce.find()
          .then(sauces => res.status(200).json(sauces))
          .catch(error => res.status(400).json({ error }));
  }
  
- /** 
-  * Récupérer une seule Sauce
-  * Params: ID de la Sauce dans la requête
-  */
+
+// ---------- VISUALISATION UNE SAUCE ----------
+
  exports.getOneSauce = (req, res, next) => {
      Sauce.findOne({
              _id: req.params.id
@@ -49,10 +46,9 @@
          .catch(error => res.status(404).json({ error }));
  }
  
- /**
-  * Modifier une Sauce
-  * Params: ID de la Sauce
-  */
+
+// ---------- MODIFICATION D'UNE SAUCE ----------
+
   exports.modifySauce = (req, res, next) => {
     if (req.file) {
         // si l'image est modifiée, il faut supprimer l'ancienne image dans le dossier /image
@@ -80,10 +76,9 @@
     }
 };
  
- /**
-  * Supprimer une Sauce
-  * Params: ID de la Sauce
-  */
+
+// ---------- SUPPRESSION D'UNE SAUCE ----------
+
  exports.deleteSauce = (req, res, next) => {
      Sauce.findOne({ _id: req.params.id })
          .then(sauce => {
@@ -98,9 +93,9 @@
          .catch(error => res.status(500).json({ error }));
  }
  
- /**
-  * Liker, Disliker ou supprimer son opinion
-  */
+ 
+ // ---------- LIKE, DISLIKE OU PAS D'OPINION D'UNE SAUCE ----------
+
  exports.opinionSauce = (req, res, next) => {
      switch (req.body.like) {
          case 0: // Si l'utilisateur supprime son opinion

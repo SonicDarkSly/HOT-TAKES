@@ -1,11 +1,10 @@
+// Import de mongoose
 const mongoose = require('mongoose');
 
-// informations base de données
-
+// Collection dans la quelle sera enregistré les éléments
 const databaseCollection = process.env.DB_COLLECTION_SAUCE;
 
 // Schema
-
 const sauceSchema = mongoose.Schema({
     userId: { 
         type: String, required: true 
@@ -54,4 +53,5 @@ const sauceSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("sauce", sauceSchema);
+// Exportation du schema en model (nom du model, schema, collection)
+module.exports = mongoose.model("sauce", sauceSchema, databaseCollection);
