@@ -3,6 +3,7 @@
 require('dotenv').config({ path: process.cwd() + '/.env' });
 const express = require ('express')
 require('./models/dbConfig');
+const path = require('path');
 const userRoutes = require('./routes/user')
 const sauceRoutes = require('./routes/sauce')
 
@@ -18,7 +19,8 @@ app.use((req, res, next) => {
 })
 
 app.use(express.json())
-app.use(express.urlencoded({extended:true}));
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/auth/', userRoutes)
 app.use('/api/sauces/', sauceRoutes);
