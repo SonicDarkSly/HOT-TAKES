@@ -20,6 +20,8 @@
 
         // Création de l'URL de l'image
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+
+        // initialise les likes/dislikes
         likes: 0,
         dislikes: 0,
         usersLiked: [],
