@@ -6,8 +6,8 @@ require('dotenv').config({ path: process.cwd() + '/.env' });
 // Appel de Express
 const express = require ('express')
 
-// Appel de la consig de la base de donnée (MongoDB)
-require('./models/dbConfig');
+// Appel de la config de la base de donnée (MongoDB)
+require('./middleware/dbConfig');
 
 // Pour les gestion des images (express.static)
 const path = require('path');

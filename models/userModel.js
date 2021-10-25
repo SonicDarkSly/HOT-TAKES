@@ -8,12 +8,12 @@ const databaseCollection = process.env.DB_COLLECTION_USER;
 const userSchema = mongoose.Schema({
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email requis !'],
         unique: true
     },
     password: { 
         type: String, 
-        required: true
+        required: [true, 'Mot de passe requis !'] 
     }
 });
 

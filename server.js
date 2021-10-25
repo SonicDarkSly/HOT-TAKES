@@ -18,6 +18,7 @@ const normalizePort = val => {
     }
     return false
 }
+
 // Si aucun port n'est fourni on écoutera sur le port 3000
 const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
@@ -59,5 +60,5 @@ server.on('listening', () => {
     console.log('Listening on ' + bind)
 })
 
-// Le serveur écoute le port définit
+// Le serveur écoute sur le port définit
 server.listen(port)

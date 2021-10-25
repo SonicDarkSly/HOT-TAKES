@@ -1,15 +1,25 @@
-// Importer le package jsonwebtoken pour la gestion du Token d'authentification
+// Import du package jsonwebtoken pour la gestion du Token
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1]; // Récupérer le token de l'entête Authorization
-        const decodedToken = jwt.verify(token, process.env.RND_TOKEN); // Vérifier et décoder le token
-        const userId = decodedToken.userId; // Récupérer l'ID de l'utilisateur dans le token
+        // Récupérer le token de l'entête Authorization
+        const token = req.headers.authorization.split(' ')[1]; 
+
+        // Vérifier et décoder le token stocker dans le fichier .env
+        const decodedToken = jwt.verify(token, process.env.RND_TOKEN); 
+
+        // Récupérer l'ID de l'utilisateur dans le token
+        const userId = decodedToken.userId; 
+        
         // Si l'ID de l'utilisateur qui effectue la requête ne correspond pas à l'ID utilisateur du token
         if (req.body.userId && req.body.userId !== userId) {
-            throw 'Invalid user ID'; // Générer une erreur
+
+            // Générer une erreur
+            throw 'Invalid user ID'; 
         } else {
+
+            // sinon next()
             next();
         }
     } catch {
