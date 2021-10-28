@@ -21,7 +21,7 @@ const app = express()
 
 // MIDDLEWARE
 
-// Headers, permet l'acces des utilisateurs.
+// Headers, permet l'acces des utilisateurs. (CORS)
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization')
