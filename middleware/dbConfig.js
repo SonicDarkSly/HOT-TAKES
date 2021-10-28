@@ -10,8 +10,6 @@ const client = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose.connect(
   uri,
   client,
-  (err) => { 
-    if (!err) console.log('MongoDB connected success') 
-    else console.log ('MongoDB error : '+ err)
-  }
-);
+)
+  .then(() => console.log('MongoDB connected success'))
+  .catch((err) => console.log('MongoDB error : '+ err));
