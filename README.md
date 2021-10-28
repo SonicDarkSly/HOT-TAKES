@@ -13,7 +13,7 @@ Renomer le fichier ```.env.example``` en ```.env```, et remplisser les variables
 Le serveur doit fonctionner sur [http://localhost:3000/](http://localhost:3000/). 
 
 Ouvrir le terminal.
-Tapez la commande suivante : ```npm start```, puis lancez le serveur en tapant la commande : ```nodemon```.
+Tapez les commandes suivantes : ```npm install```, puis lancez le serveur en tapant la commande : ```nodemon```.
 
 # FRONTEND #
 
