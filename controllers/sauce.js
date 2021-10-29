@@ -1,4 +1,4 @@
-// Import
+// Impor
 // Appel de file system pour la gestion de l'image (modification sauce et suppression sauce)
  const fs = require('fs');
 
