@@ -14,20 +14,6 @@ const User = require('../models/userModel');
 // Pour l'enregistrement d'un nouvel utilisateur
 exports.signup = (req, res, next) => {
 
-
-    // Controle renforcée du mot de passe
-
-   /* const crtlPass = req.body.password;
-    if (crtlPass.match( /[0-9]/g) && 
-        crtlPass.match( /[A-Z]/g) && 
-        crtlPass.match(/[a-z]/g) && 
-        crtlPass.match( /[^a-zA-Z\d]/g) &&
-        crtlPass.length >= 10) {
-
-        
-    }
-    */
-
             // hashage du mdp
             bcrypt.hash(req.body.password, 10)
             .then(hash => {
